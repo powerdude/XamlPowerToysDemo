@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailStackLayoutForm">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:FormatEnumConverter x:Key="FormatEnumConverter" />
+            <Color x:Key="labelColor">#696969</Color>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="Margin" Value="0,10,0,0"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource labelColor}"></Setter>
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ScrollView>
+        <StackLayout Spacing="3" Margin="5,0">
+            <Label Margin="5,0,0,5" Text="Title"/>
+            <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title"/>
+
+            <Label Text="Date Published"/>
+            <DatePicker Date="{Binding Path=Book.DatePublished, Mode=TwoWay}"/>
+
+            <Label Text="Rating"/>
+            <StackLayout Orientation="Horizontal">
+                <Slider Maximum="10" Minimum="1" Value="{Binding Path=Book.Rating, Mode=TwoWay}" />
+                <Label TextColor="Black" Text="{Binding Path=Book.Rating, Mode=OneWay, StringFormat='({0:F0})'}" Margin="10,0" />
+            </StackLayout>
+
+            <Label Text="Description"/>
+            <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+
+            <Label Text="Title"/>
+            <Entry Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From"/>
+
+            <Label Text="Cost"/>
+            <Entry Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}" Placeholder="Cost" Keyboard="Numeric"/>
+
+            <Label Text="Format" />
+            <controls:BindablePicker ItemsSource="{Binding Path=Formats}" SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}"/>
+
+            <Label Text="Url"/>
+            <Entry Text="{Binding Path=Book.Url, Mode=TwoWay}" Placeholder="Url" Keyboard="Url"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentView>

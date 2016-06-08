@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamlPowerToysDemo.View.Books.BooksMasterPage"
+             Title="Books" Padding="5,0">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="detailColor">#4b4b4b</Color>
+            <Style TargetType="Label" x:Key="smallLabel">
+                <Setter Property="TextColor" Value="{StaticResource detailColor}" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView x:Name="listView" ItemsSource="{Binding Path=Books}"
+              SeparatorVisibility="None" HasUnevenRows="True" ItemSelected="BooksListView_OnItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ContentView Padding="5,7">
+                        <Frame HasShadow="True" OutlineColor="Accent">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Image HeightRequest="80" VerticalOptions="Center" Source="{Binding Path=Image}" />
+                                <StackLayout Orientation="Vertical" Spacing="5">
+                                    <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding Path=Title}"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Path=Description}" LineBreakMode="TailTruncation"
+                                           Style="{StaticResource smallLabel}" />
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Label Text="{Binding Path=Format}" Style="{StaticResource smallLabel}" />
+                                        <Label Text="{Binding Path=CostText}" Style="{StaticResource smallLabel}" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label FontSize="Large" TextColor="Accent" Text=">" VerticalOptions="Center"
+                                       HorizontalOptions="End" />
+                            </StackLayout>
+                        </Frame>
+                    </ContentView>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

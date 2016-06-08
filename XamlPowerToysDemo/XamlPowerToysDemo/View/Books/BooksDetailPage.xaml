@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:books="clr-namespace:XamlPowerToysDemo.View.Books;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailPage"
+             Title="Detail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding Path=SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <books:BooksDetailGridRootGridRowForm/>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--
+    BooksDetailStackLayoutRootGridRowForm - great results - uses Grid to lay out editing row.
+
+    BooksDetailStackLayoutForm - great results - Top to bottom stacked form.
+    
+    BooksDetailGridRootGridRowForm - great results - uses Grid to lay out rows and columns.
+       
+    BooksDetailTableViewForm - great on IOS, good on Android; Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
+
+    BooksDetailStackLayoutRootStackLayoutRowForm - awful results do not use.
+-->

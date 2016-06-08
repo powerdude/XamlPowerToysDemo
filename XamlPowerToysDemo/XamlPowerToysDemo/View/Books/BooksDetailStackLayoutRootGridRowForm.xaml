@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailStackLayoutRootGridRowForm">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:FormatEnumConverter x:Key="FormatEnumConverter" />
+            <Color x:Key="labelColor">#696969</Color>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource labelColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="5,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Title" />
+                <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Published" />
+                <DatePicker Grid.Column="1" Date="{Binding Path=Book.DatePublished, Mode=TwoWay}" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Rating" />
+                <Slider Grid.Column="1" Maximum="10" Minimum="1" Value="{Binding Path=Book.Rating, Mode=TwoWay}" />
+                <Label TextColor="Black" Grid.Column="2" Text="{Binding Path=Book.Rating, Mode=OneWay, StringFormat='({0:F0})'}" Margin="10,0" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Description" />
+                <Editor Grid.Column="1" Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Title" />
+                <Entry Grid.Column="1" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}"
+                       Placeholder="Purchased From" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Cost" />
+                <Entry Grid.Column="1" Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}"
+                       Placeholder="Cost" Keyboard="Numeric" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Format" />
+                <controls:BindablePicker Grid.Column="1" ItemsSource="{Binding Path=Formats}"
+                                         SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Url" />
+                <Entry Grid.Column="1" Text="{Binding Path=Book.Url, Mode=TwoWay}" Placeholder="Url" Keyboard="Url" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentView>

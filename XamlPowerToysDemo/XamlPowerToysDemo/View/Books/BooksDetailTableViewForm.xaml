@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailTableViewForm">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:FormatEnumConverter x:Key="FormatEnumConverter"/>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <TableView Intent="Form" HasUnevenRows="True">
+        <TableRoot>
+            <TableSection Title="General">
+                <EntryCell Label="Title" Text="{Binding Path=Book.Title, Mode=TwoWay}" Keyboard="Text" />
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Published" />
+                        <DatePicker Date="{Binding Path=Book.DatePublished, Mode=TwoWay}" VerticalOptions="Center" />
+                    </StackLayout>
+                </ViewCell>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Rating" />
+                        <Slider Value="{Binding Path=Book.Rating, Mode=TwoWay}" Maximum="10" Minimum="1"/>
+                        <Label HorizontalOptions="End" TextColor="Black" Text="{Binding Path=Book.Rating, Mode=OneWay, StringFormat='({0:F0})'}" Margin="10,0" />
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Description">
+                <ViewCell Height="125">
+                    <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" />
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Purchased From">
+                <EntryCell Label="Vendor" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Keyboard="Text" />
+                <EntryCell Label="Cost" Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}"
+                           Keyboard="Numeric" />
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Format" />
+                        <controls:BindablePicker VerticalOptions="Center" ItemsSource="{Binding Path=Formats}" SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}" />
+                    </StackLayout>
+                </ViewCell>
+                <EntryCell Label="Url" Text="{Binding Path=Book.Url, Mode=TwoWay}" Keyboard="Url" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+
+</ContentView>
