@@ -26,8 +26,8 @@
     
     <ScrollView>
         <StackLayout Spacing="3" Margin="5,0">
-            <Label Margin="5,0,0,5" Text="Title"/>
-            <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title"/>
+            <Label Text="Title"/>
+            <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" Keyboard="Text"/>
 
             <Label Text="Date Published"/>
             <DatePicker Date="{Binding Path=Book.DatePublished, Mode=TwoWay}"/>
@@ -39,10 +39,10 @@
             </StackLayout>
 
             <Label Text="Description"/>
-            <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+            <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" Keyboard="Text"/>
 
             <Label Text="Title"/>
-            <Entry Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From"/>
+            <Entry Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From" Keyboard="Text"/>
 
             <Label Text="Cost"/>
             <Entry Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}" Placeholder="Cost" Keyboard="Numeric"/>

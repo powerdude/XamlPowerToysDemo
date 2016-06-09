@@ -9,7 +9,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <books:BooksDetailGridRootGridRowForm/>
+        <books:BooksDetailStackLayoutForm/>
     </ContentPage.Content>
 </ContentPage>
 
@@ -20,7 +20,9 @@
     
     BooksDetailGridRootGridRowForm - great results - uses Grid to lay out rows and columns.
        
-    BooksDetailTableViewForm - great on IOS, good on Android; Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
+    BooksDetailTableViewForm - good on IOS, good on Android; IOS can't set EntryCell label fontsize, Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
 
+    BooksDetailTableViewGridRowForm - great results - uses TableView and Grid to lay out rows.
+    
     BooksDetailStackLayoutRootStackLayoutRowForm - awful results do not use.
 -->

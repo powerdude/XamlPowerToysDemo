@@ -10,6 +10,8 @@
             <converters:FormatEnumConverter x:Key="FormatEnumConverter"/>
             <Style TargetType="Label">
                 <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="15,0,0,0"/>
+                <Setter Property="WidthRequest" Value="85"/>
             </Style>
             <Style TargetType="DatePicker">
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -30,13 +32,13 @@
                 <EntryCell Label="Title" Text="{Binding Path=Book.Title, Mode=TwoWay}" Keyboard="Text" />
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Published" />
+                        <Label Text="Published" />
                         <DatePicker Date="{Binding Path=Book.DatePublished, Mode=TwoWay}" VerticalOptions="Center" />
                     </StackLayout>
                 </ViewCell>
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Rating" />
+                        <Label Text="Rating" />
                         <Slider Value="{Binding Path=Book.Rating, Mode=TwoWay}" Maximum="10" Minimum="1"/>
                         <Label HorizontalOptions="End" TextColor="Black" Text="{Binding Path=Book.Rating, Mode=OneWay, StringFormat='({0:F0})'}" Margin="10,0" />
                     </StackLayout>
@@ -44,7 +46,7 @@
             </TableSection>
             <TableSection Title="Description">
                 <ViewCell Height="125">
-                    <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" />
+                    <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" Keyboard="Text"/>
                 </ViewCell>
             </TableSection>
             <TableSection Title="Purchased From">
@@ -53,8 +55,8 @@
                            Keyboard="Numeric" />
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Label Margin="15,0,0,0" WidthRequest="85" VerticalOptions="Center" Text="Format" />
-                        <controls:BindablePicker VerticalOptions="Center" ItemsSource="{Binding Path=Formats}" SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}" />
+                        <Label Text="Format" />
+                        <controls:BindablePicker ItemsSource="{Binding Path=Formats}" SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}" />
                     </StackLayout>
                 </ViewCell>
                 <EntryCell Label="Url" Text="{Binding Path=Book.Url, Mode=TwoWay}" Keyboard="Url" />

@@ -52,7 +52,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Text="Title" />
-            <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" />
+            <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" Keyboard="Text"/>
 
             <Label Grid.Row="1" Text="Published" />
             <DatePicker Grid.Column="1" Grid.Row="1" Date="{Binding Path=Book.DatePublished, Mode=TwoWay}" />
@@ -64,10 +64,10 @@
             </StackLayout>
 
             <Label Grid.Row="3" Text="Description" />
-            <Editor Grid.Column="1" Grid.Row="3" Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+            <Editor Grid.Column="1" Grid.Row="3" Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" Keyboard="Text"/>
 
             <Label Grid.Row="4" Text="Title" />
-            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From" />
+            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From" Keyboard="Text"/>
 
             <Label Grid.Row="5" Text="Cost" />
             <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}"

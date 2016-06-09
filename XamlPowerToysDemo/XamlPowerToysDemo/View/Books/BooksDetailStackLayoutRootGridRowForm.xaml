@@ -44,7 +44,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Label Text="Title" />
-                <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" />
+                <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" Keyboard="Text"/>
             </Grid>
 
             <Grid>
@@ -73,7 +73,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Label Text="Description" />
-                <Editor Grid.Column="1" Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+                <Editor Grid.Column="1" Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" Keyboard="Text"/>
             </Grid>
 
             <Grid>
@@ -83,7 +83,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Text="Title" />
                 <Entry Grid.Column="1" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}"
-                       Placeholder="Purchased From" />
+                       Placeholder="Purchased From" Keyboard="Text"/>
             </Grid>
 
             <Grid>

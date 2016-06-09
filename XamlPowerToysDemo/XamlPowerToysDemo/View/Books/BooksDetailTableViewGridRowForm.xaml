@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailTableViewGridRowForm">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:FormatEnumConverter x:Key="FormatEnumConverter" />
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="85" />
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="Margin" Value="5,0,0,0" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0,0,5,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <TableView Intent="Form" HasUnevenRows="True">
+        <TableRoot>
+            <TableSection Title="General">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Title" />
+                        <Entry Grid.Column="1" Text="{Binding Path=Book.Title, Mode=TwoWay}" Keyboard="Text" />
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Published" />
+                        <DatePicker Grid.Column="1" Date="{Binding Path=Book.DatePublished, Mode=TwoWay}"/>
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Rating" />
+                        <Slider Grid.Column="1" Value="{Binding Path=Book.Rating, Mode=TwoWay}" Maximum="10"
+                                Minimum="1" />
+                        <Label Grid.Column="2" HorizontalOptions="End" TextColor="Black"
+                               Text="{Binding Path=Book.Rating, Mode=OneWay, StringFormat='({0:F0})'}" Margin="10,0" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Description">
+                <ViewCell Height="125">
+                    <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" Keyboard="Text"/>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Purchased From">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Vendor" />
+                        <Entry Grid.Column="1" Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Keyboard="Text" />
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Cost" />
+                        <Entry Grid.Column="1" Text="{Binding Path=Book.Cost, Mode=TwoWay, StringFormat='{0:N2}'}"
+                               Keyboard="Numeric" />
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Format" />
+                        <controls:BindablePicker Grid.Column="1" ItemsSource="{Binding Path=Formats}"
+                                                 SelectedItem="{Binding Path=Book.Format, Mode=TwoWay, Converter={StaticResource FormatEnumConverter}}" />
+                    </Grid>
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Url" />
+                        <Entry Grid.Column="1" Text="{Binding Path=Book.Url, Mode=TwoWay}" Keyboard="Url" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+
+</ContentView>

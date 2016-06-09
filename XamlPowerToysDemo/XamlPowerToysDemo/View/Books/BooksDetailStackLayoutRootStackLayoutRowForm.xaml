@@ -35,10 +35,10 @@
     </ContentView.Resources>
 
     <ScrollView>
-        <StackLayout Spacing="3" Margin="5,5,0,0">
+        <StackLayout Spacing="3" Margin="5,0">
             <StackLayout Orientation="Horizontal">
-                <Label Margin="5,0,0,5" Text="Title"/>
-                <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title"/>
+                <Label Text="Title"/>
+                <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" Keyboard="Text"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
@@ -54,12 +54,12 @@
             
             <StackLayout Orientation="Horizontal">
                 <Label Text="Description"/>
-                <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" />
+                <Editor Text="{Binding Path=Book.Description, Mode=TwoWay}" HeightRequest="125" Keyboard="Text"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Title"/>
-                <Entry Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From"/>
+                <Entry Text="{Binding Path=Book.PurchasedFrom, Mode=TwoWay}" Placeholder="Purchased From" Keyboard="Text"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
