@@ -31,7 +31,12 @@
         </StackLayout>
         <StackLayout Grid.Column="1">
             <Button Clicked="PeopleButton_OnClicked" Image="people.png"/>
-            <Label Text="People"/>
+            <Label Text="Person"/>
         </StackLayout>
+        <StackLayout Grid.Row="1">
+            <Button Clicked="PersonWithImageButton_OnClicked" Image="people.png"/>
+            <Label Text="Person - Image"/>
+        </StackLayout>
+
     </Grid>
 </ContentPage>

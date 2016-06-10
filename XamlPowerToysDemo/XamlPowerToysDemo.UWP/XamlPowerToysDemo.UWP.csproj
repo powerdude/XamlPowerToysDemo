@@ -115,6 +115,7 @@
     <Content Include="FrameworkDesignGuidelines.jpg" />
     <Content Include="IllustratedWPF.jpg" />
     <Content Include="people.png" />
+    <Content Include="phone100x100.png" />
     <Content Include="PracticalNETForFinancialMarkets.jpg" />
     <Content Include="ProASPNETWebAPI.jpg" />
     <Content Include="ProfessionalASPNETMVC5.jpg" />

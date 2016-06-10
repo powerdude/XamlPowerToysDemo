@@ -81,6 +81,12 @@
     <Compile Include="View\People\PersonEditorViewModel.cs">
       <DependentUpon>PersonEditorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\People\PersonEditorWithIconsInsteadOfLabels.xaml.cs">
+      <DependentUpon>PersonEditorWithIconsInsteadOfLabels.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkPlace.xaml.cs">
+      <DependentUpon>WorkPlace.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -161,6 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Books\BooksDetailTableViewGridRowForm.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\People\PersonEditorWithIconsInsteadOfLabels.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WorkPlace.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

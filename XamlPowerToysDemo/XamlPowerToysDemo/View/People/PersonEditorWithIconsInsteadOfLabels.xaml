@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamlPowerToysDemo.View.People.PersonEditorWithIconsInsteadOfLabels"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             Title="Person">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image">
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="25"/>
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Opacity" Value="0.4"></Setter>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="5,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <Entry Grid.Column="1" Text="{Binding Path=Person.FirstName, Mode=TwoWay}" Placeholder="First Name" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <Entry Grid.Column="1" Text="{Binding Path=Person.LastName, Mode=TwoWay}" Placeholder="Last Name" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <Entry Grid.Column="1" Text="{Binding Path=Person.Address, Mode=TwoWay}" Placeholder="Address" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <Entry Grid.Column="1" Text="{Binding Path=Person.City, Mode=TwoWay}" Placeholder="City" />
+                <controls:BindablePicker Grid.Column="2"
+                                         ItemsSource="{Binding Path=States}"
+                                         SelectedItem="{Binding Path=Person.State, Mode=TwoWay}" />
+                <Entry Grid.Column="3" Text="{Binding Path=Person.ZipCode, Mode=TwoWay}" Placeholder="Zip Code" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <controls:BindablePicker Grid.Column="1"
+                                         DisplayMemberPath="Name"
+                                         SelectedValuePath="Abbreviation"
+                                         ItemsSource="{Binding Path=Countries}"
+                                         SelectedValue="{Binding Path=Person.Country, Mode=TwoWay}" />
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="phone100x100.png"/>
+                <Entry Grid.Column="1" Text="{Binding Path=Person.Phone, Mode=TwoWay}" Placeholder="Phone"
+                       Keyboard="Telephone" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

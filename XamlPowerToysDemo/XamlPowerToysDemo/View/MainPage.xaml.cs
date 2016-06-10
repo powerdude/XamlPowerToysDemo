@@ -18,5 +18,10 @@
             await this.Navigation.PushAsync(new PersonEditorView());
         }
 
+        async void PersonWithImageButton_OnClicked(object sender, EventArgs e) {
+            await this.Navigation.PushAsync(new PersonEditorWithIconsInsteadOfLabels());
+
+        }
+
     }
 }
