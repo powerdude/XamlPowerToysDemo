@@ -20,7 +20,10 @@
 
         async void PersonWithImageButton_OnClicked(object sender, EventArgs e) {
             await this.Navigation.PushAsync(new PersonEditorWithIconsInsteadOfLabels());
+        }
 
+        async void PersonWorkPlaceButton_OnClicked(object sender, EventArgs e) {
+            await this.Navigation.PushAsync(new PeopleWorkPlace());
         }
 
     }

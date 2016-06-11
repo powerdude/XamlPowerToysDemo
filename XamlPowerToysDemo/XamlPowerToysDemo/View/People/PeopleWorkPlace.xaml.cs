@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace XamlPowerToysDemo {
-    public partial class WorkPlace : ContentPage {
-        public WorkPlace() {
+namespace XamlPowerToysDemo.View.People {
+    public partial class PeopleWorkPlace : ContentPage {
+        public PeopleWorkPlace() {
             InitializeComponent();
         }
     }

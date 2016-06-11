@@ -9,18 +9,20 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <books:BooksDetailStackLayoutForm/>
+        <books:BooksDetailWorkPlace/>
     </ContentPage.Content>
 </ContentPage>
 
 <!--
+    BooksDetailWorkPlace - a play ground for creating forms.
+
     BooksDetailStackLayoutRootGridRowForm - great results - uses Grid to lay out editing row.
 
     BooksDetailStackLayoutForm - great results - Top to bottom stacked form.
     
     BooksDetailGridRootGridRowForm - great results - uses Grid to lay out rows and columns.
        
-    BooksDetailTableViewForm - good on IOS, good on Android; IOS can't set EntryCell label fontsize, Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
+    BooksDetailTableViewForm - good on IOS, good on Android; IOS can't set EntryCell label font size, Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
 
     BooksDetailTableViewGridRowForm - great results - uses TableView and Grid to lay out rows.
     

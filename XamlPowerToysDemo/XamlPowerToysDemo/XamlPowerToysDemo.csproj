@@ -66,6 +66,9 @@
     <Compile Include="View\Books\BooksDetailTableViewGridRowForm.xaml.cs">
       <DependentUpon>BooksDetailTableViewGridRowForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Books\BooksDetailWorkPlace.xaml.cs">
+      <DependentUpon>BooksDetailWorkPlace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Books\BooksMasterPage.xaml.cs">
       <DependentUpon>BooksMasterPage.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,9 @@
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\People\PeopleWorkPlace.xaml.cs">
+      <DependentUpon>PeopleWorkPlace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\People\PersonEditorView.xaml.cs">
       <DependentUpon>PersonEditorView.xaml</DependentUpon>
     </Compile>
@@ -83,9 +89,6 @@
     </Compile>
     <Compile Include="View\People\PersonEditorWithIconsInsteadOfLabels.xaml.cs">
       <DependentUpon>PersonEditorWithIconsInsteadOfLabels.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WorkPlace.xaml.cs">
-      <DependentUpon>WorkPlace.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +181,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="WorkPlace.xaml">
+    <EmbeddedResource Include="View\People\PeopleWorkPlace.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Books\BooksDetailWorkPlace.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

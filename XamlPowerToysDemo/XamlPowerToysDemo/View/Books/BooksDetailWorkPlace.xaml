@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
+             xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             x:Class="XamlPowerToysDemo.View.Books.BooksDetailWorkPlace">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:FormatEnumConverter x:Key="FormatEnumConverter" />
+            <Color x:Key="labelColor">#696969</Color>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource labelColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style TargetType="{x:Type controls:BindablePicker}">
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    
+    
+</ContentView>

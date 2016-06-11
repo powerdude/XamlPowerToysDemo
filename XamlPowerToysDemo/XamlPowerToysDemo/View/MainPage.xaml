@@ -24,18 +24,26 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackLayout>
             <Button Clicked="BooksButton_OnClicked" Image="books.png"/>
             <Label Text="Books"/>
         </StackLayout>
-        <StackLayout Grid.Column="1">
+
+        <StackLayout Grid.Row="1">
             <Button Clicked="PeopleButton_OnClicked" Image="people.png"/>
             <Label Text="Person"/>
         </StackLayout>
-        <StackLayout Grid.Row="1">
+        <StackLayout Grid.Row="1" Grid.Column="1">
             <Button Clicked="PersonWithImageButton_OnClicked" Image="people.png"/>
             <Label Text="Person - Image"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="2">
+            <Button Clicked="PersonWorkPlaceButton_OnClicked" Image="people.png"/>
+            <Label Text="Person - Workplace"/>
         </StackLayout>
 
     </Grid>
