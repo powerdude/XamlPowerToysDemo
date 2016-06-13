@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace XamlPowerToysDemo.View.People {
+    using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace XamlPowerToysDemo.View.People {
     public partial class PeopleWorkPlace : ContentPage {
+
         public PeopleWorkPlace() {
             InitializeComponent();
+            this.BindingContext = new PersonEditorViewModel();
         }
+
     }
 }
