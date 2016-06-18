@@ -1,14 +1,23 @@
-﻿namespace XamlPowerToysDemo.View.People {
+﻿namespace XamlPowerToysDemo.View.People
+{
     using System;
     using System.Collections.Generic;
+    using System.Windows.Input;
+    using Xamarin.Forms;
     using XamlPowerToysDemo.Model.Infrastructure;
     using XamlPowerToysDemo.Model.People;
 
-    public class PersonEditorViewModel : ObservableObject {
+    public class PersonEditorViewModel : ObservableObject
+    {
 
         IList<Country> _countries;
         Person _person;
         IList<String> _states;
+
+        public ICommand DeleteCommand => new Command(DeleteCommandExecute);
+
+        public ICommand SaveCommand => new Command(SaveCommandExecute);
+
 
         public IList<Country> Countries {
             get { return _countries; }
@@ -34,7 +43,8 @@
             }
         }
 
-        public PersonEditorViewModel() {
+        public PersonEditorViewModel()
+        {
             var person = new Person();
             person.LastName = "Shifflett";
             person.Address = "2 Commerce Drive";
@@ -47,12 +57,21 @@
             person.ZipCode = "08512";
             this.Person = person;
 
-            this.States = new List<String> {"NC", "NJ", "NY"};
+            this.States = new List<String> { "NC", "NJ", "NY" };
             this.Countries = new List<Country>();
-            this.Countries.Add(new Country {Abbreviation = "BGR", Name = "Bulgaria"});
-            this.Countries.Add(new Country {Abbreviation = "ROU", Name = "Romania"});
-            this.Countries.Add(new Country {Abbreviation = "RUS", Name = "Russian Federation"});
-            this.Countries.Add(new Country {Abbreviation = "USA", Name = "United States"});
+            this.Countries.Add(new Country { Abbreviation = "BGR", Name = "Bulgaria" });
+            this.Countries.Add(new Country { Abbreviation = "ROU", Name = "Romania" });
+            this.Countries.Add(new Country { Abbreviation = "RUS", Name = "Russian Federation" });
+            this.Countries.Add(new Country { Abbreviation = "USA", Name = "United States" });
+        }
+
+        private void DeleteCommandExecute(object obj)
+        {
+
+        }
+        private void SaveCommandExecute(object obj)
+        {
+
         }
 
     }

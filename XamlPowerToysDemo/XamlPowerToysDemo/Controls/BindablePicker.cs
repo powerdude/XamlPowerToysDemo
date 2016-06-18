@@ -9,15 +9,11 @@
     /// https://forums.xamarin.com/discussion/63565/xamarin-forms-picker-data-binding-using-mvvm
     /// https://forums.xamarin.com/discussion/30801/xamarin-forms-bindable-picker
     /// 
-    /// I added in SelectedValue & SelectedValuePath
+    /// I added in SelectedValue & SelectedValuePath and internal control logic
     /// </summary>
     public class BindablePicker : Picker {
 
-        Boolean _disableNestedCalls = false;
-
-        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create("ItemsSource", typeof(IEnumerable), typeof(BindablePicker), null, propertyChanged: OnItemsSourceChanged);
-        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create("SelectedItem", typeof(Object), typeof(BindablePicker), null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged);
-        public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create("SelectedValue", typeof(Object), typeof(BindablePicker), null, BindingMode.TwoWay, propertyChanged: OnSelectedValueChanged);
+        Boolean _disableNestedCalls;
 
         public String DisplayMemberPath { get; set; }
 
@@ -31,7 +27,7 @@
             set {
                 if (SelectedItem != value) {
                     SetValue(SelectedItemProperty, value);
-                    InternalUpdateSelectedIndexSelectedValue();
+                    InternalSelectedItemChanged();
                 }
             }
         }
@@ -40,7 +36,7 @@
             get { return GetValue(SelectedValueProperty); }
             set {
                 SetValue(SelectedValueProperty, value);
-                InternalUpdateSelectedIndexSelectedValue();
+                InternalSelectedValueChanged();
             }
         }
 
@@ -52,39 +48,19 @@
 
         public event EventHandler<SelectedItemChangedEventArgs> ItemSelected;
 
-        void InternalUpdateSelectedIndexSelectedItem() {
-            if (_disableNestedCalls) {
-                return;
-            }
+        public static readonly BindableProperty ItemsSourceProperty =
+            BindableProperty.Create("ItemsSource", typeof(IEnumerable), typeof(BindablePicker),
+                null, propertyChanged: OnItemsSourceChanged);
 
-            if (String.IsNullOrWhiteSpace(SelectedValuePath)) {
-                return;
-            }
-            var selectedIndex = -1;
-            Object selectedItem = null;
-            if (ItemsSource != null) {
-                var index = 0;
-                foreach (var item in ItemsSource) {
-                    if (item != null) {
-                        var type = item.GetType();
-                        var prop = type.GetRuntimeProperty(SelectedValuePath);
-                        if (prop.GetValue(item) == SelectedValue) {
-                            selectedIndex = index;
-                            selectedItem = item;
-                            break;
-                        }
-                    }
+        public static readonly BindableProperty SelectedItemProperty =
+            BindableProperty.Create("SelectedItem", typeof(Object), typeof(BindablePicker),
+                null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged);
 
-                    index++;
-                }
-            }
-            _disableNestedCalls = true;
-            SelectedItem = selectedItem;
-            SelectedIndex = selectedIndex;
-            _disableNestedCalls = false;
-        }
+        public static readonly BindableProperty SelectedValueProperty =
+            BindableProperty.Create("SelectedValue", typeof(Object), typeof(BindablePicker),
+                null, BindingMode.TwoWay, propertyChanged: OnSelectedValueChanged);
 
-        void InternalUpdateSelectedIndexSelectedValue() {
+        void InternalSelectedItemChanged() {
             if (_disableNestedCalls) {
                 return;
             }
@@ -113,13 +89,45 @@
             _disableNestedCalls = false;
         }
 
-        static void OnItemsSourceChanged(BindableObject bindable, Object oldValue, Object newValue) {
-            var picker = (BindablePicker)bindable;
-
-            if (Equals(newValue, null) && !Equals(oldValue, null)) {
+        void InternalSelectedValueChanged() {
+            if (_disableNestedCalls) {
                 return;
             }
 
+            if (String.IsNullOrWhiteSpace(SelectedValuePath)) {
+                return;
+            }
+            var selectedIndex = -1;
+            Object selectedItem = null;
+            var hasSelectedValuePath = !String.IsNullOrWhiteSpace(SelectedValuePath);
+            if (ItemsSource != null && hasSelectedValuePath) {
+                var index = 0;
+                foreach (var item in ItemsSource) {
+                    if (item != null) {
+                        var type = item.GetType();
+                        var prop = type.GetRuntimeProperty(SelectedValuePath);
+                        if (prop.GetValue(item) == SelectedValue) {
+                            selectedIndex = index;
+                            selectedItem = item;
+                            break;
+                        }
+                    }
+
+                    index++;
+                }
+            }
+            _disableNestedCalls = true;
+            SelectedItem = selectedItem;
+            SelectedIndex = selectedIndex;
+            _disableNestedCalls = false;
+        }
+
+        static void OnItemsSourceChanged(BindableObject bindable, Object oldValue, Object newValue) {
+            if (Equals(newValue, null) && Equals(oldValue, null)) {
+                return;
+            }
+
+            var picker = (BindablePicker)bindable;
             picker.Items.Clear();
 
             if (!Equals(newValue, null)) {
@@ -134,17 +142,42 @@
                         picker.Items.Add(item.ToString());
                     }
                 }
-            }
 
-            picker.InternalUpdateSelectedIndexSelectedValue();
+                picker._disableNestedCalls = true;
+                picker.SelectedIndex = -1;
+                picker._disableNestedCalls = false;
+
+                if (picker.SelectedItem != null) {
+                    picker.InternalSelectedItemChanged();
+                } else if (hasDisplayMemberPath && picker.SelectedValue != null) {
+                    picker.InternalSelectedValueChanged();
+                }
+            } else {
+                picker._disableNestedCalls = true;
+                picker.SelectedIndex = -1;
+                picker.SelectedItem = null;
+                picker.SelectedValue = null;
+                picker._disableNestedCalls = false;
+            }
         }
 
         void OnSelectedIndexChanged(Object sender, EventArgs e) {
-            if (SelectedIndex < 0 || ItemsSource == null || !ItemsSource.GetEnumerator().MoveNext()) {
-                SelectedItem = null;
-                SelectedValue = null;
+            if (_disableNestedCalls) {
                 return;
             }
+
+            if (SelectedIndex < 0 || ItemsSource == null || !ItemsSource.GetEnumerator().MoveNext()) {
+                _disableNestedCalls = true;
+                if (SelectedIndex != -1) {
+                    SelectedIndex = -1;
+                }
+                SelectedItem = null;
+                SelectedValue = null;
+                _disableNestedCalls = false;
+                return;
+            }
+
+            _disableNestedCalls = true;
 
             var index = 0;
             var hasSelectedValuePath = !String.IsNullOrWhiteSpace(SelectedValuePath);
@@ -161,17 +194,19 @@
                 }
                 index++;
             }
+
+            _disableNestedCalls = false;
         }
 
         static void OnSelectedItemChanged(BindableObject bindable, Object oldValue, Object newValue) {
             var boundPicker = (BindablePicker)bindable;
             boundPicker.ItemSelected?.Invoke(boundPicker, new SelectedItemChangedEventArgs(newValue));
-            boundPicker.InternalUpdateSelectedIndexSelectedValue();
+            boundPicker.InternalSelectedItemChanged();
         }
 
-        static void OnSelectedValueChanged(BindableObject bindable, Object oldvalue, Object newvalue) {
+        static void OnSelectedValueChanged(BindableObject bindable, Object oldValue, Object newValue) {
             var boundPicker = (BindablePicker)bindable;
-            boundPicker.InternalUpdateSelectedIndexSelectedItem();
+            boundPicker.InternalSelectedValueChanged();
         }
 
     }

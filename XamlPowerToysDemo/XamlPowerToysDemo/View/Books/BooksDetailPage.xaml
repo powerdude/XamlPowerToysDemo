@@ -9,12 +9,17 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <books:BooksDetailStackLayoutRootStackLayoutRowForm/>
+        <books:BooksDetailGridRootGridRowForm/>
     </ContentPage.Content>
 </ContentPage>
 
 <!--
-    BooksDetailWorkPlace - a play ground for creating forms.
+    PLEASE NOTE: as of 6/18/2016, the UWP rendering of these simple forms does look great.
+                    UWP's layout does not respect Grid Column widths the way IOS and Android do.
+                    I'm hoping that as Xamarin Forms matures, a more consistent rendering across
+                    all platforms will be much closer.
+
+    BooksDetailWorkPlace - an empty form play ground for creating forms.
 
     BooksDetailStackLayoutRootGridRowForm - great results - uses Grid to lay out editing row.
 
@@ -22,9 +27,13 @@
     
     BooksDetailGridRootGridRowForm - great results - uses Grid to lay out rows and columns.
        
-    BooksDetailTableViewForm - good on IOS, good on Android; IOS can't set EntryCell label font size, Android does not allow setting widths on Entry Cells, better to not use Entry Cells.
+    BooksDetailTableViewForm - good on IOS, good on Android; 
+                               IOS can't set EntryCell label font size,        
+                               Android does not allow setting widths on Entry Cells, 
+                               better to not use Entry Cells for now unless you don't
+                               care about these minor inconsistencies.
 
     BooksDetailTableViewGridRowForm - great results - uses TableView and Grid to lay out rows.
     
-    BooksDetailStackLayoutRootStackLayoutRowForm - awful results do not use.
+    BooksDetailStackLayoutRootStackLayoutRowForm - awful results do not use this layout technique.
 -->
