@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlPowerToysDemo.WPF", "Xa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlPowerToysDemo.Droid", "XamlPowerToysDemo\XamlPowerToysDemo.Droid\XamlPowerToysDemo.Droid.csproj", "{DFF518CE-E3AA-4858-8492-2A4239B26645}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{C362706C-40A4-46A7-8E22-CBA2CD18E61B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

@@ -9,7 +9,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <books:BooksDetailGridRootGridRowForm/>
+        <books:BooksDetailWorkPlace/>
     </ContentPage.Content>
 </ContentPage>
 
