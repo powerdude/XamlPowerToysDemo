@@ -4,7 +4,7 @@ This is the solution that I used to record the XAML Power Toys videos.
 
 ## Purpose
 
-The purpose of this repro is to provide an application for texting the XAML Power Toys Extension.
+The purpose of this repro is to provide an application for testing the XAML Power Toys Extension.
 
 This is a Xamarin Forms IOS, Android, UWP application that also has a WPF project.
 
