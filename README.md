@@ -1,7 +1,7 @@
 # XAML Power Toys Demo
 
 This is the solution that I used to record the XAML Power Toys videos.
-
+  
 ## Purpose
 
 The purpose of this repro is to provide an application for testing the XAML Power Toys Extension.
