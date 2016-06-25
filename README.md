@@ -6,11 +6,25 @@ This is the solution that I used to record the XAML Power Toys videos.
 
 The purpose of this repro is to provide an application for testing the XAML Power Toys Extension.
 
-This is a Xamarin Forms IOS, Android, UWP application that also has a WPF project.
+This is a Xamarin Forms IOS, Android, UWP application that also has a WPF project and a Windows Universal UPW project.
 
-A secondary purpose is to compare the cross-platform rendering of a data entry form.  
+A secondary purpose is to compare the cross-platform rendering of data entry forms.  
 
-I strongly recommend that you leverage this research and run each of the forms in all three platforms: IOS, Android, and UWP.  This will give you an idea of how Xamarin Forms renders and which layout strategy works best for you application requirements.
+I strongly recommend that you leverage this research and run each of the forms in all three Xamarin Forms platforms: IOS, Android, and UWP as well as WPF and Windows Universal.  This will give you an idea of how Xamarin Forms renders and which layout strategy works best for you application requirements.
+
+## Build Configuration
+This solution has 5 projects that can be the "**Startup Project**."
+- XamlPowerToysDemo.Universal
+- XamlPowerToysDemo.WPF
+- XamlPowerToysDemo.Droid
+- XamlPowerToysDemo.iOS
+- XamlPowerToysDemo.UWP
+
+After selecting a Startup Project, please use the Configuration Manager to selected the appropriate projects to build and deploy.
+
+You'll always need to build the XamlPowerToysDemo.Model project.
+
+![Solution Explorer](Art/solution-explorer.png)
 
 ## Portable Project
 
