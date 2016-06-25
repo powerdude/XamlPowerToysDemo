@@ -65,6 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\RelayCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -99,12 +100,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamlPowerToysDemo.Model\XamlPowerToysDemo.Model.csproj">
-      <Project>{87ad18f8-b243-4903-add2-ad582480a98f}</Project>
-      <Name>XamlPowerToysDemo.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\CreatingMobileAppsWithXamarinForms.jpg" />
     <Resource Include="Images\CSharp5.jpg" />
     <Resource Include="Images\DesignPatternsGOF.jpg" />
@@ -126,6 +121,12 @@
     <Resource Include="Images\Address.png" />
     <Resource Include="Images\Customer.png" />
     <Resource Include="Images\Telephone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XamlPowerToysDemo.Model\XamlPowerToysDemo.Model.csproj">
+      <Project>{87ad18f8-b243-4903-add2-ad582480a98f}</Project>
+      <Name>XamlPowerToysDemo.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

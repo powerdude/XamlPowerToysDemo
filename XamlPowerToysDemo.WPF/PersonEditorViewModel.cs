@@ -1,13 +1,17 @@
 ﻿namespace XamlPowerToysDemo.WPF {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Input;
     using XamlPowerToysDemo.Model.Infrastructure;
     using XamlPowerToysDemo.Model.People;
+    using XamlPowerToysDemo.WPF.Infrastructure;
 
     public class PersonEditorViewModel : ObservableObject {
 
         IList<Country> _countries;
         Person _person;
+        ICommand _saveCommand;
         IList<String> _states;
 
         public IList<Country> Countries {
@@ -26,6 +30,8 @@
             }
         }
 
+        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new RelayCommand(SaveCommandExecute, CanSaveCommandExecute));
+
         public IList<String> States {
             get { return _states; }
             set {
@@ -36,6 +42,10 @@
 
         public PersonEditorViewModel() {
             var person = new Person();
+            person.BirthDate = new DateTime(1960, 12, 25);
+            person.BirthdayOffset = new DateTimeOffset(person.BirthDate);
+            person.NumberOfComputers = 6;
+            person.IsActive = true;
             person.LastName = "Shifflett";
             person.Address = "2 Commerce Drive";
             person.City = "Cranbury";
@@ -53,6 +63,14 @@
             this.Countries.Add(new Country {Abbreviation = "ROU", Name = "Romania"});
             this.Countries.Add(new Country {Abbreviation = "RUS", Name = "Russian Federation"});
             this.Countries.Add(new Country {Abbreviation = "USA", Name = "United States"});
+        }
+
+        Boolean CanSaveCommandExecute() {
+            return true;
+        }
+
+        void SaveCommandExecute() {
+            MessageBox.Show("Saved");
         }
 
     }

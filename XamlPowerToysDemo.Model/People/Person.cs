@@ -5,11 +5,15 @@
     public class Person : ObservableObject, IComparable<Person>, IEquatable<Person> {
 
         String _address;
+        DateTime _birthDate;
+        DateTimeOffset _birthdayOffset;
         String _city;
         String _country;
         String _firstName;
         Int32 _id;
+        Boolean _isActive;
         String _lastName;
+        Int32 _numberOfComputers;
         String _phone;
         String _state;
         String _zipCode;
@@ -18,6 +22,22 @@
             get { return _address; }
             set {
                 _address = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTime BirthDate {
+            get { return _birthDate; }
+            set {
+                _birthDate = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTimeOffset BirthdayOffset {
+            get { return _birthdayOffset; }
+            set {
+                _birthdayOffset = value;
                 RaisePropertyChanged();
             }
         }
@@ -54,10 +74,26 @@
             }
         }
 
+        public Boolean IsActive {
+            get { return _isActive; }
+            set {
+                _isActive = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public String LastName {
             get { return _lastName; }
             set {
                 _lastName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Int32 NumberOfComputers {
+            get { return _numberOfComputers; }
+            set {
+                _numberOfComputers = value;
                 RaisePropertyChanged();
             }
         }

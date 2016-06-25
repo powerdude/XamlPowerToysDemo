@@ -124,6 +124,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XamlPowerToysDemo.Model\XamlPowerToysDemo.Model.csproj">
+      <Project>{87ad18f8-b243-4903-add2-ad582480a98f}</Project>
+      <Name>XamlPowerToysDemo.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamlPowerToysDemo\XamlPowerToysDemo.csproj">
       <Name>XamlPowerToysDemo</Name>
     </ProjectReference>

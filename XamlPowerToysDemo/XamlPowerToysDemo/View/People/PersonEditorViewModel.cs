@@ -46,6 +46,9 @@
         public PersonEditorViewModel()
         {
             var person = new Person();
+            person.BirthDate = new DateTime(1960, 12, 25);
+            person.NumberOfComputers = 6;
+            person.IsActive = true;
             person.LastName = "Shifflett";
             person.Address = "2 Commerce Drive";
             person.City = "Cranbury";

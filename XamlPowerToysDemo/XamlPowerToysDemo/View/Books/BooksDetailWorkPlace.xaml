@@ -1,22 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:XamlPowerToysDemo.Controls;assembly=XamlPowerToysDemo"
              xmlns:converters="clr-namespace:XamlPowerToysDemo.Converters;assembly=XamlPowerToysDemo"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              x:Class="XamlPowerToysDemo.View.Books.BooksDetailWorkPlace">
     <ContentView.Resources>
         <ResourceDictionary>
             <converters:FormatEnumConverter x:Key="FormatEnumConverter" />
-            <Color x:Key="labelColor">#696969</Color>
             <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource labelColor}" />
                 <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="85" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="Margin" Value="5,0,0,0" />
             </Style>
             <Style TargetType="Entry">
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-            <Style TargetType="Editor">
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style TargetType="DatePicker">
@@ -24,37 +23,26 @@
             </Style>
             <Style TargetType="Slider">
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
             <Style TargetType="{x:Type controls:BindablePicker}">
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style TargetType="Grid">
-                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="Margin" Value="0,0,5,0" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <StackLayout Orientation="Vertical" >
+    <StackLayout Orientation="Vertical">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Text="Title" />
-            <Entry Text="{Binding Path=Book.Title,Mode=TwoWay}" Grid.Column="1" Placeholder="Title" />
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Text="Format" />
-            <controls:BindablePicker Grid.Column="1" ItemsSource="{Binding Path=Formats}" SelectedItem="{Binding Path=Book.Format, Converter={StaticResource FormatEnumConverter}, Mode=TwoWay}" />
-        </Grid>
+        <Label Text="Title" />
+        <Entry Text="{Binding Path=Book.Title, Mode=TwoWay}" Placeholder="Title" />
+        <Label Text="Date Published" />
+        <DatePicker Date="{Binding Path=Book.DatePublished, Mode=TwoWay, StringFormat='D'}" Format="D"
+                    MaximumDate="{x:Static sys:DateTime.Now}" MinimumDate="7/1/2015" />
+        <Label Text="Format" />
+        <controls:BindablePicker ItemsSource="{Binding Path=Formats}"
+                                 SelectedItem="{Binding Path=Book.Format, Converter={StaticResource FormatEnumConverter}, Mode=TwoWay}" />
     </StackLayout>
-
 </ContentView>
